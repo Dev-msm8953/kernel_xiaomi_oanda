@@ -40,3 +40,5 @@ endif
 CFLAGS_KASAN_NOSANITIZE := -fno-builtin
 
 endif
+
+export CFLAGS_KASAN CFLAGS_KASAN_NOSANITIZE
