@@ -20,7 +20,7 @@
 
 #include "ubsan.h"
 
-const char *type_check_kinds[] = {
+static const char * const type_check_kinds[] = {
 	"load of",
 	"store to",
 	"reference binding to",
