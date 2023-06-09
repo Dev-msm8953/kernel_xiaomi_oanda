@@ -797,7 +797,7 @@ static int alarm_timer_nsleep(const clockid_t which_clock, int flags,
 	enum  alarmtimer_type type = clock2alarm(which_clock);
 	struct alarm alarm;
 	ktime_t exp;
-	int ret = 0;
+	int ret;
 	struct restart_block *restart;
 
 	if (!alarmtimer_get_rtcdev())
