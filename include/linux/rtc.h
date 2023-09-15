@@ -219,6 +219,23 @@ static inline bool is_leap_year(unsigned int year)
 	return (!(year % 4) && (year % 100)) || !(year % 400);
 }
 
+/**
+ * rtc_bound_alarmtime() - Return alarm time bound by rtc limit
+ * @rtc: Pointer to rtc device structure
+ * @requested: Requested alarm timeout
+ *
+ * Return: Alarm timeout bound by maximum alarm time supported by rtc.
+ */
+static inline ktime_t rtc_bound_alarmtime(struct rtc_device *rtc,
+					  ktime_t requested)
+{
+	if (rtc->alarm_offset_max &&
+	    rtc->alarm_offset_max * MSEC_PER_SEC < ktime_to_ms(requested))
+		return ms_to_ktime(rtc->alarm_offset_max * MSEC_PER_SEC);
+
+	return requested;
+}
+
 #ifdef CONFIG_RTC_HCTOSYS_DEVICE
 extern int rtc_hctosys_ret;
 #else
