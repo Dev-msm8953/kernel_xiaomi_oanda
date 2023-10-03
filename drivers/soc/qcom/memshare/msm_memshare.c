@@ -580,7 +580,12 @@ static int handle_alloc_generic_req(void *req_h, void *req, void *conn_h)
 	}
 
 	if (!memblock[index].allotted) {
-		if (alloc_req->client_id == 1 && alloc_req->num_bytes > 0)
+		if (alloc_req->client_id == 1 && alloc_req->num_bytes > 0) {
+
+		if (alloc_req->num_bytes > memblock[index].size)
+			alloc_req->num_bytes = memblock[index].size;
+
+		if (alloc_req->client_id == 1)
 			size = alloc_req->num_bytes + MEMSHARE_GUARD_BYTES;
 		else
 			size = alloc_req->num_bytes;
