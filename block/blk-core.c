@@ -1798,6 +1798,8 @@ static inline void blk_partition_remap(struct bio *bio)
 
 static void handle_bad_sector(struct bio *bio)
 {
+	return;
+/*
 	char b[BDEVNAME_SIZE];
 
 	printk(KERN_INFO "attempt to access beyond end of device\n");
@@ -1806,6 +1808,7 @@ static void handle_bad_sector(struct bio *bio)
 			bio->bi_opf,
 			(unsigned long long)bio_end_sector(bio),
 			(long long)(i_size_read(bio->bi_bdev->bd_inode) >> 9));
+*/
 }
 
 #ifdef CONFIG_FAIL_MAKE_REQUEST
